@@ -1,7 +1,9 @@
 import telebot
 import requests
 import os
-from config import BOT_TOKEN, REMOVE_BG_API
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+REMOVE_BG_API = os.getenv("REMOVE_BG_API")
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -9,13 +11,13 @@ bot = telebot.TeleBot(BOT_TOKEN)
 def start(message):
     bot.reply_to(
         message,
-        "👋 Send me a photo.\nI will remove the background."
+        "👋 Send a photo\nI will remove the background."
     )
 
 @bot.message_handler(content_types=['photo'])
 def remove_bg(message):
 
-    bot.reply_to(message,"⏳ Processing image...")
+    bot.reply_to(message,"⏳ Removing background...")
 
     file_info = bot.get_file(message.photo[-1].file_id)
     file_url = f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_info.file_path}"
@@ -37,6 +39,6 @@ def remove_bg(message):
         bot.send_document(message.chat.id, open("no_bg.png","rb"))
 
     else:
-        bot.reply_to(message,"❌ Error removing background")
+        bot.reply_to(message,"❌ Failed to remove background")
 
 bot.infinity_polling()

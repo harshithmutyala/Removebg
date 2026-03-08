@@ -1,0 +1,12 @@
+services:
+  - type: web
+    plan: free
+    name: removebg
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: REMOVE_BG_API
+        sync: false

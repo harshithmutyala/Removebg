@@ -1,0 +1,14 @@
+{
+  "name": "Telegram BG Remover Bot",
+  "description": "Telegram bot to remove image background",
+  "repository": "https://github.com/harshithmutyala/removebg",
+  "keywords": ["telegram", "bot", "background remover"],
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Telegram Bot Token"
+    },
+    "REMOVE_BG_API": {
+      "description": "Remove.bg API Key"
+    }
+  }
+}
